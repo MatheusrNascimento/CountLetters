@@ -1,18 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Contador de letras \n ---------------------------------------------------");
-System.Console.WriteLine("Informe uma frase");
-string sentence = Console.ReadLine() ?? string.Empty;
+﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Running;
+using CountLetters;
 
-char[] chars = sentence.ToCharArray();
-Dictionary<char, int> countLatters = new Dictionary<char, int>();
-
-foreach (char c in chars)
+internal class Program
 {
-    if(countLatters.ContainsKey(c))    
-        countLatters[c]++;
-    else
-        countLatters.Add(c, 1);
-}
+    
+    private static void Main(string[] args)
+    {
 
-foreach (var d in countLatters)
-    System.Console.WriteLine($" {d.Key}: {d.Value}");
+        BenchmarkRunner.Run<LetterCounter>();
+    }
+}
